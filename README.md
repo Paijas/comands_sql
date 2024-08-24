@@ -12,8 +12,6 @@ Este repositório contém uma documentação detalhada e exemplos práticos de c
 ### Comandos SQL Cobertos
 
 
-## Este repositório cobre uma ampla gama de comandos SQL, incluindo, mas não se limitando a:
-
 - **Filtros e Condições**: `BETWEEN`, `IN`, `AND`, `LIKE`, `iLIKE`, `CASE`
 - **Funções de Agregação**: `COUNT`, `MAX`, `MIN`, `AVG`, `SUM`
 - **Ordenação e Limitação de Resultados**: `ORDER BY`, `LIMIT`, `OFFSET`, `FETCH`
