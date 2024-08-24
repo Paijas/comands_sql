@@ -25,6 +25,7 @@ Este repositório contém uma documentação detalhada e exemplos práticos de c
 - **Outras Funções e Comandos**: `EXTRACT`, `AGE`, `CONSTRAINT`, `UNIQUE`, `ON CONFLICT DO NOTHING`, `ON CONFLICT UPDATE SET`, `CAST`, `TRUNCATE`, `DELETE`, `INSERT`, `UPDATE`, `ALTER TABLE`, `DROP TABLE`, `CREATE TABLE`, `PRIMARY KEY`, `FOREIGN KEY`, `CHECK`
 
 
+
 ## Índice
 
 - [DISTINCT](#distinct)
@@ -76,155 +77,425 @@ Este repositório contém uma documentação detalhada e exemplos práticos de c
 - [PRIMARY KEY](#primary-key)
 - [FOREIGN KEY](#foreign-key)
 - [CHECK](#check)
+- [BETWEEN](#between)
 
 ---
 
 ## Descrições de Comandos SQL
 
-### DISTINCT
-O comando `DISTINCT` é usado para retornar apenas valores distintos, eliminando duplicatas.
-
-### OFFSET
-O comando `OFFSET` é utilizado para ignorar um número específico de linhas antes de começar a retornar as linhas de resultado.
-
-### LIMIT
-O comando `LIMIT` limita o número de linhas retornadas por uma consulta.
-
-### FETCH
-O comando `FETCH` é usado em conjunto com `OFFSET` para limitar o número de linhas retornadas.
-
-### IN
-O comando `IN` é utilizado para filtrar resultados que correspondem a qualquer valor dentro de um conjunto especificado.
-
-### AND
-O comando `AND` é usado para combinar condições múltiplas em uma cláusula `WHERE`.
-
-### LIKE
-O comando `LIKE` é usado para buscar um padrão específico em uma coluna.
-
-### iLIKE
-O comando `iLIKE` é semelhante ao `LIKE`, mas não diferencia maiúsculas de minúsculas.
+### '%'
+- **Comando:** `%`
+  - **Descrição:** Usado com `LIKE` ou `iLIKE` para substituir qualquer sequência de caracteres.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM clientes WHERE email LIKE '%@gmail.com';
+    ```
 
 ### '_____'
-O uso de `'_____'` com `LIKE` permite buscar valores que correspondem exatamente a um número de caracteres.
-
-### '%'
-O caractere `%` com `LIKE` ou `iLIKE` é usado para substituir qualquer sequência de caracteres.
-
-### COUNT
-O comando `COUNT` retorna o número total de linhas que correspondem ao critério especificado.
-
-### ORDER BY
-O comando `ORDER BY` é usado para ordenar os resultados da consulta.
-
-### GROUP BY
-O comando `GROUP BY` é utilizado para agrupar linhas que têm valores em colunas específicas em comum.
-
-### DESC
-O modificador `DESC` é usado com `ORDER BY` para ordenar os resultados em ordem decrescente.
-
-### ASC
-O modificador `ASC` é usado com `ORDER BY` para ordenar os resultados em ordem crescente.
-
-### HAVING
-O comando `HAVING` é utilizado para filtrar os resultados de grupos formados pelo `GROUP BY`.
-
-### MAX
-O comando `MAX` retorna o valor máximo de uma coluna.
-
-### MIN
-O comando `MIN` retorna o valor mínimo de uma coluna.
-
-### AVG
-O comando `AVG` retorna a média dos valores de uma coluna.
-
-### ROUND
-O comando `ROUND` é utilizado para arredondar um valor numérico.
-
-### SUM
-O comando `SUM` retorna a soma de todos os valores em uma coluna.
-
-### ALIAS
-`ALIAS` é utilizado para renomear colunas ou tabelas para simplificar a leitura do código.
-
-### COALESCE
-O comando `COALESCE` retorna o primeiro valor não nulo em uma lista de argumentos.
-
-### NULLIF
-O comando `NULLIF` compara dois valores e retorna `NULL` se forem iguais, caso contrário, retorna o primeiro valor.
-
-### EXTRACT
-O comando `EXTRACT` é utilizado para extrair uma subparte de uma data ou intervalo.
+- **Comando:** `'_____'`
+  - **Descrição:** Com `LIKE`, permite buscar valores que correspondem exatamente a um número de caracteres.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos WHERE codigo LIKE 'ABCD_';
+    ```
 
 ### AGE
-O comando `AGE` calcula a diferença entre duas datas.
+- **Comando:** `AGE`
+  - **Descrição:** Calcula a diferença entre duas datas.
+  - **Exemplo:**
+    ```sql
+    SELECT AGE(data_nascimento) FROM clientes;
+    ```
 
-### CONSTRAINT
-O comando `CONSTRAINT` é utilizado para definir restrições em colunas ou tabelas.
-
-### UNIQUE
-A restrição `UNIQUE` garante que todos os valores em uma coluna ou conjunto de colunas sejam distintos.
-
-### ON CONFLICT DO NOTHING
-O comando `ON CONFLICT DO NOTHING` permite ignorar conflitos de inserção, como uma duplicação de chave.
-
-### ON CONFLICT UPDATE SET
-O comando `ON CONFLICT UPDATE SET` permite que, em caso de conflito, os valores sejam atualizados.
-
-### JOIN
-O comando `JOIN` combina linhas de duas ou mais tabelas com base em uma condição relacionada.
-
-### LEFT JOIN
-O comando `LEFT JOIN` retorna todas as linhas da tabela à esquerda, e as linhas correspondentes da tabela à direita. Se não houver correspondência, o resultado conterá `NULL` para as colunas da tabela à direita.
-
-### INNER JOIN
-O comando `INNER JOIN` retorna todas as linhas que têm correspondências em ambas as tabelas.
-
-### RIGHT JOIN
-O comando `RIGHT JOIN` retorna todas as linhas da tabela à direita, e as linhas correspondentes da tabela à esquerda. Se não houver correspondência, o resultado conterá `NULL` para as colunas da tabela à esquerda.
-
-### FULL OUTER JOIN
-O comando `FULL OUTER JOIN` retorna todas as linhas quando há uma correspondência em uma das tabelas. Se não houver correspondência, o resultado conterá `NULL` para as colunas da tabela que não tem correspondência.
-
-### UNION
-O comando `UNION` combina os resultados de duas ou mais consultas `SELECT`, retornando apenas valores distintos.
-
-### UNION ALL
-O comando `UNION ALL` combina os resultados de duas ou mais consultas `SELECT`, incluindo duplicatas.
-
-### CASE
-O comando `CASE` permite realizar operações condicionais em consultas SQL.
-
-### CAST
-O comando `CAST` converte um valor de um tipo de dado para outro.
-
-### TRUNCATE
-O comando `TRUNCATE` remove todas as linhas de uma tabela de maneira rápida e eficiente, sem gerar logs de transação.
-
-### DELETE
-O comando `DELETE` é usado para remover linhas de uma tabela com base em uma condição.
-
-### INSERT
-O comando `INSERT` é usado para adicionar novas linhas a uma tabela.
-
-### UPDATE
-O comando `UPDATE` é usado para modificar os dados existentes em uma tabela.
+### ALIAS
+- **Comando:** `ALIAS`
+  - **Descrição:** Renomeia colunas ou tabelas para simplificar a leitura do código.
+  - **Exemplo:**
+    ```sql
+    SELECT preco AS valor, nome AS produto FROM produtos;
+    ```
 
 ### ALTER TABLE
-O comando `ALTER TABLE` é usado para modificar a estrutura de uma tabela existente, como adicionar, remover ou alterar colunas.
+- **Comando:** `ALTER TABLE`
+  - **Descrição:** Modifica a estrutura de uma tabela existente, como adicionar, remover ou alterar colunas.
+  - **Exemplo:**
+    ```sql
+    ALTER TABLE produtos ADD COLUMN estoque INT;
+    ```
 
-### DROP TABLE
-O comando `DROP TABLE` é usado para remover uma tabela do banco de dados.
+### AND
+- **Comando:** `AND`
+  - **Descrição:** Combina condições múltiplas em uma cláusula `WHERE`.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos WHERE preco > 10 AND estoque > 0;
+    ```
 
-### CREATE TABLE
-O comando `CREATE TABLE` é usado para criar uma nova tabela no banco de dados.
+### ASC
+- **Comando:** `ASC`
+  - **Descrição:** Usado com `ORDER BY` para ordenar os resultados em ordem crescente.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos ORDER BY preco ASC;
+    ```
 
-### PRIMARY KEY
-A restrição `PRIMARY KEY` identifica de forma exclusiva cada registro em uma tabela.
+### BETWEEN
+- **Comando:** `BETWEEN`
+  - **Descrição:** O comando `BETWEEN` é usado para filtrar os resultados dentro de um intervalo especificado, incluindo os valores de limite.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos WHERE preco BETWEEN 10 AND 20;
+    ```
 
-### FOREIGN KEY
-A restrição `FOREIGN KEY` cria um vínculo entre duas tabelas, garantindo a integridade referencial dos dados.
+### CASE
+- **Comando:** `CASE`
+  - **Descrição:** Permite realizar operações condicionais em consultas SQL.
+  - **Exemplo:**
+    ```sql
+    SELECT nome, 
+           CASE 
+               WHEN preco > 100 THEN 'Caro' 
+               ELSE 'Barato' 
+           END AS categoria_preco
+    FROM produtos;
+    ```
+
+### CAST
+- **Comando:** `CAST`
+  - **Descrição:** Converte um valor de um tipo de dado para outro.
+  - **Exemplo:**
+    ```sql
+    SELECT CAST(preco AS INTEGER) FROM produtos;
+    ```
 
 ### CHECK
-A restrição `CHECK` é usada para limitar os valores que podem ser colocados em uma coluna.
+- **Comando:** `CHECK`
+  - **Descrição:** Limita os valores que podem ser colocados em uma coluna.
+  - **Exemplo:**
+    ```sql
+    CREATE TABLE produtos (
+        id SERIAL PRIMARY KEY,
+        preco DECIMAL(10, 2) CHECK (preco > 0)
+    );
+    ```
+
+### CONSTRAINT
+- **Comando:** `CONSTRAINT`
+  - **Descrição:** Define restrições em colunas ou tabelas.
+  - **Exemplo:**
+    ```sql
+    ALTER TABLE produtos ADD CONSTRAINT chk_preco CHECK (preco > 0);
+    ```
+
+### COALESCE
+- **Comando:** `COALESCE`
+  - **Descrição:** Retorna o primeiro valor não nulo em uma lista de argumentos.
+  - **Exemplo:**
+    ```sql
+    SELECT COALESCE(desconto, 0) FROM vendas;
+    ```
+
+### COUNT
+- **Comando:** `COUNT`
+  - **Descrição:** Retorna o número total de linhas que correspondem ao critério especificado.
+  - **Exemplo:**
+    ```sql
+    SELECT COUNT(*) FROM produtos WHERE preco > 20;
+    ```
+
+### CREATE TABLE
+- **Comando:** `CREATE TABLE`
+  - **Descrição:** Cria uma nova tabela no banco de dados.
+  - **Exemplo:**
+    ```sql
+    CREATE TABLE produtos (
+        id SERIAL PRIMARY KEY,
+        nome VARCHAR(255),
+        preco DECIMAL(10, 2)
+    );
+    ```
+
+### DELETE
+- **Comando:** `DELETE`
+  - **Descrição:** Remove linhas de uma tabela com base em uma condição.
+  - **Exemplo:**
+    ```sql
+    DELETE FROM produtos WHERE preco < 10;
+    ```
+
+### DESC
+- **Comando:** `DESC`
+  - **Descrição:** Usado com `ORDER BY` para ordenar os resultados em ordem decrescente.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos ORDER BY preco DESC;
+    ```
+
+### DISTINCT
+- **Comando:** `DISTINCT`
+  - **Descrição:** Retorna apenas valores distintos, eliminando duplicatas.
+  - **Exemplo:**
+    ```sql
+    SELECT DISTINCT categoria FROM produtos;
+    ```
+
+### DROP TABLE
+- **Comando:** `DROP TABLE`
+  - **Descrição:** Remove uma tabela do banco de dados.
+  - **Exemplo:**
+    ```sql
+    DROP TABLE produtos;
+    ```
+
+### EXTRACT
+- **Comando:** `EXTRACT`
+  - **Descrição:** Extrai uma subparte de uma data ou intervalo.
+  - **Exemplo:**
+    ```sql
+    SELECT EXTRACT(YEAR FROM data_venda) FROM vendas;
+    ```
+
+### FETCH
+- **Comando:** `FETCH`
+  - **Descrição:** Usado em conjunto com `OFFSET` para limitar o número de linhas retornadas.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos ORDER BY preco ASC OFFSET 5 FETCH NEXT 10 ROWS ONLY;
+    ```
+
+### FOREIGN KEY
+- **Comando:** `FOREIGN KEY`
+  - **Descrição:** Cria um vínculo entre duas tabelas, garantindo a integridade referencial dos dados.
+  - **Exemplo:**
+    ```sql
+    CREATE TABLE pedidos (
+        id SERIAL PRIMARY KEY,
+        cliente_id INT REFERENCES clientes(id)
+    );
+    ```
+
+### FULL OUTER JOIN
+- **Comando:** `FULL OUTER JOIN`
+  - **Descrição:** Retorna todas as linhas quando há uma correspondência em uma das tabelas. Se não houver correspondência, o resultado conterá `NULL` para as colunas da tabela que não tem correspondência.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM pedidos FULL OUTER JOIN clientes ON pedidos.cliente_id = clientes.id;
+    ```
+
+### GROUP BY
+- **Comando:** `GROUP BY`
+  - **Descrição:** Agrupa linhas que têm valores em colunas específicas em comum.
+  - **Exemplo:**
+    ```sql
+    SELECT categoria, COUNT(*) FROM produtos GROUP BY categoria;
+    ```
+
+### HAVING
+- **Comando:** `HAVING`
+  - **Descrição:** Filtra os resultados de grupos formados pelo `GROUP BY`.
+  - **Exemplo:**
+    ```sql
+    SELECT categoria, COUNT(*) FROM produtos GROUP BY categoria HAVING COUNT(*) > 5;
+    ```
+
+### IN
+- **Comando:** `IN`
+  - **Descrição:** Filtra resultados que correspondem a qualquer valor dentro de um conjunto especificado.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos WHERE categoria IN ('Eletrônicos', 'Móveis');
+    ```
+
+### INNER JOIN
+- **Comando:** `INNER JOIN`
+  - **Descrição:** Retorna todas as linhas que têm correspondências em ambas as tabelas.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM pedidos INNER JOIN clientes ON pedidos.cliente_id = clientes.id;
+    ```
+
+### INSERT
+- **Comando:** `INSERT`
+  - **Descrição:** Adiciona novas linhas a uma tabela.
+  - **Exemplo:**
+    ```sql
+    INSERT INTO produtos (nome, preco) VALUES ('Produto A', 20.0);
+    ```
+
+### iLIKE
+- **Comando:** `iLIKE`
+  - **Descrição:** Similar ao `LIKE`, mas não diferencia maiúsculas de minúsculas.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM clientes WHERE nome iLIKE 'joão%';
+    ```
+
+### JOIN
+- **Comando:** `JOIN`
+  - **Descrição:** Combina linhas de duas ou mais tabelas com base em uma condição relacionada.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM pedidos JOIN clientes ON pedidos.cliente_id = clientes.id;
+    ```
+
+### LEFT JOIN
+- **Comando:** `LEFT JOIN`
+  - **Descrição:** Retorna todas as linhas da tabela à esquerda, e as linhas correspondentes da tabela à direita. Se não houver correspondência, o resultado conterá `NULL` para as colunas da tabela à direita.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM pedidos LEFT JOIN clientes ON pedidos.cliente_id = clientes.id;
+    ```
+
+### LIKE
+- **Comando:** `LIKE`
+  - **Descrição:** Busca um padrão específico em uma coluna.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM clientes WHERE nome LIKE 'João%';
+    ```
+
+### LIMIT
+- **Comando:** `LIMIT`
+  - **Descrição:** Limita o número de linhas retornadas por uma consulta.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos LIMIT 10;
+    ```
+
+### MAX
+- **Comando:** `MAX`
+  - **Descrição:** Retorna o valor máximo de uma coluna.
+  - **Exemplo:**
+    ```sql
+    SELECT MAX(preco) FROM produtos;
+    ```
+
+### MIN
+- **Comando:** `MIN`
+  - **Descrição:** Retorna o valor mínimo de uma coluna.
+  - **Exemplo:**
+    ```sql
+    SELECT MIN(preco) FROM produtos;
+    ```
+
+### NULLIF
+- **Comando:** `NULLIF`
+  - **Descrição:** Compara dois valores e retorna `NULL` se forem iguais, caso contrário, retorna o primeiro valor.
+  - **Exemplo:**
+    ```sql
+    SELECT NULLIF(preco_promocional, preco_normal) FROM produtos;
+    ```
+
+### OFFSET
+- **Comando:** `OFFSET`
+  - **Descrição:** Ignora um número específico de linhas antes de começar a retornar as linhas de resultado.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos ORDER BY preco ASC OFFSET 5;
+    ```
+
+### ON CONFLICT DO NOTHING
+- **Comando:** `ON CONFLICT DO NOTHING`
+  - **Descrição:** Ignora conflitos de inserção, como uma duplicação de chave.
+  - **Exemplo:**
+    ```sql
+    INSERT INTO usuarios (email) VALUES ('teste@teste.com')
+    ON CONFLICT DO NOTHING;
+    ```
+
+### ON CONFLICT UPDATE SET
+- **Comando:** `ON CONFLICT UPDATE SET`
+  - **Descrição:** Em caso de conflito, os valores são atualizados.
+  - **Exemplo:**
+    ```sql
+    INSERT INTO produtos (id, nome, preco) VALUES (1, 'Produto A', 20.0)
+    ON CONFLICT (id) DO UPDATE SET preco = 20.0;
+    ```
+
+### ORDER BY
+- **Comando:** `ORDER BY`
+  - **Descrição:** Ordena os resultados da consulta.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM produtos ORDER BY preco DESC;
+    ```
+
+### PRIMARY KEY
+- **Comando:** `PRIMARY KEY`
+  - **Descrição:** Identifica de forma exclusiva cada registro em uma tabela.
+  - **Exemplo:**
+    ```sql
+    CREATE TABLE usuarios (
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(255)
+    );
+    ```
+
+### RIGHT JOIN
+- **Comando:** `RIGHT JOIN`
+  - **Descrição:** Retorna todas as linhas da tabela à direita, e as linhas correspondentes da tabela à esquerda. Se não houver correspondência, o resultado conterá `NULL` para as colunas da tabela à esquerda.
+  - **Exemplo:**
+    ```sql
+    SELECT * FROM pedidos RIGHT JOIN clientes ON pedidos.cliente_id = clientes.id;
+    ```
+
+### ROUND
+- **Comando:** `ROUND`
+  - **Descrição:** Arredonda um valor numérico.
+  - **Exemplo:**
+    ```sql
+    SELECT ROUND(AVG(preco), 2) FROM produtos;
+    ```
+
+### SUM
+- **Comando:** `SUM`
+  - **Descrição:** Retorna a soma de todos os valores em uma coluna.
+  - **Exemplo:**
+    ```sql
+    SELECT SUM(quantidade) FROM vendas;
+    ```
+
+### TRUNCATE
+- **Comando:** `TRUNCATE`
+  - **Descrição:** Remove todas as linhas de uma tabela de maneira rápida e eficiente, sem gerar logs de transação.
+  - **Exemplo:**
+    ```sql
+    TRUNCATE TABLE produtos;
+    ```
+
+### UNION
+- **Comando:** `UNION`
+  - **Descrição:** Combina os resultados de duas ou mais consultas `SELECT`, retornando apenas valores distintos.
+  - **Exemplo:**
+    ```sql
+    SELECT nome FROM clientes UNION SELECT nome FROM fornecedores;
+    ```
+
+### UNION ALL
+- **Comando:** `UNION ALL`
+  - **Descrição:** Combina os resultados de duas ou mais consultas `SELECT`, incluindo duplicatas.
+  - **Exemplo:**
+    ```sql
+    SELECT nome FROM clientes UNION ALL SELECT nome FROM fornecedores;
+    ```
+
+### UNIQUE
+- **Comando:** `UNIQUE`
+  - **Descrição:** Garante que todos os valores em uma coluna ou conjunto de colunas sejam distintos.
+  - **Exemplo:**
+    ```sql
+    CREATE TABLE usuarios (
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(255) UNIQUE
+    );
+    ```
+
+### UPDATE
+- **Comando:** `UPDATE`
+  - **Descrição:** Modifica os dados existentes em uma tabela.
+  - **Exemplo:**
+    ```sql
+    UPDATE produtos SET preco = preco * 1.1 WHERE categoria = 'Eletrônicos';
+    ```
+
 
